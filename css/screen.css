@@ -34,6 +34,8 @@ html {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--global-color-back);
+  color: var(--global-color-front);
 }
 
 *,
@@ -43,6 +45,10 @@ html {
 }
 
 body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 /*
@@ -133,16 +139,123 @@ body {
 */
 
 .c-robot {
+  fill: var(--global-color-front);
+  max-width: 300px;
+  animation-name: robotHover;
+  animation-duration: 0.75s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+
 }
 
-.c-robot__shadow {
+.c-robot__shadow{
+  fill:black;
+  animation-name: shadowPulse;
+  animation-duration: 0.75s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  transform-origin: 50% 100%;
 }
 
+@keyframes shadowPulse {
+100% {
+transform: scale (0.75);
+}
+}
+
+@keyframes robotHover {
+0% {
+transform: translateY(2.5%);
+}
+100% {
+transform: translateY(-2.5%);
+}
+}
 
 /*
     Component: Controls
 */
+.c-robot--css-anim{
+  width: 200px;
+  height: 200px;
+}
+.c-all{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.c-controls{
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin: 2rem;
+}
+.c-controls__button{
+  margin: 1rem;
+}
+.c-controls__list{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
 
+
+.c-robot--css-anim #Shadow {
+  
+transform-origin: 50% 100%;
+animation-name: shadowPulse;
+animation-duration: var(--c-robot-animation-duration);
+animation-timing-function: var(--c-robot-animation-timing-function);
+animation-iteration-count: var (--c-robot-animation-iteration-count);
+animation-direction: var(--c-robot-animation-direction);
+}
+.c-robot--css-anim #Robot {
+fill: white;
+animation-duration: var(--c-robot-animation-duration);
+animation-name: robotHover; animation-timing-function: var(--c-robot-animation-timing-function); animation-iteration-count: var(--c-robot-animation-iteration-count);
+animation-direction: var(--c-robot-animation-direction);
+}
+
+
+.c-controls__button--pause{
+  display: absolute;
+  right: 12px;
+  bottom: 12px;
+  
+}
+
+.c-play-icon{
+  display: block;
+    width: 24px;
+    height: 24px;
+    pointer-events: none;
+    z-index: 1;
+    
+}
+
+.c-controls__button--pause{
+  margin: 5px;
+}
+.c-controls__button--pause .c-play-icon--play{
+  display: block;
+}
+
+.c-controls__button--pause .c-play-icon--pause{
+  display: none;
+}
+
+.show{
+  display: block;
+}
+.hide{
+  display: none;
+}
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/
